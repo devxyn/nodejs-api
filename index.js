@@ -9,7 +9,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const { connect } = mongoose;
 
-await connect("mongodb://localhost:27017/student-app");
+const username = "student-app";
+const password = "ABXY7bnkytnb6WrM";
+
+await connect(`mongodb+srv://${username}:${password}@cluster0.blm9xwo.mongodb.net/?retryWrites=true&w=majority`, {
+  dbName: "student-app",
+});
 
 app.set("port", PORT);
 
