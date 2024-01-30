@@ -4,16 +4,14 @@ import bodyParser from "body-parser";
 import StudentFactory from "./factories/StudentFactory.js";
 import StudentRepository from "./repositories/studentRepository.js";
 import mongoose from "mongoose";
+import "dotenv/config.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const { connect } = mongoose;
 
-const username = "student-app";
-const password = "ABXY7bnkytnb6WrM";
-
-await connect(`mongodb+srv://${username}:${password}@cluster0.blm9xwo.mongodb.net/?retryWrites=true&w=majority`, {
-  dbName: "student-app",
+await connect(process.env.DB_URL, {
+  dbName: process.env.DB_NAME,
 });
 
 app.set("port", PORT);
